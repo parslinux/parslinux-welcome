@@ -23,7 +23,6 @@ Bu dizin, projenin mimarisi, geliştirme standartları, paketleme kılavuzları,
 
 ### 📦 Dağıtım, Paketleme ve Özelleştirme
 * [**FLATPAK_PACKAGING_GUIDE.md**](FLATPAK_PACKAGING_GUIDE.md): Flatpak manifestosu hazırlama, sandbox izinleri ve Flathub dağıtımı.
-* [**FORK.md**](FORK.md): Başka bir Linux dağıtımı veya özel sürüm için projeyi çatallama ve markalama (rebranding) rehberi.
 * [**SELF_HOSTING_GUIDE.md**](SELF_HOSTING_GUIDE.md): Kurumsal / kapalı ağlar için ayna, katalog ve duvar kağıdı sunucusu barındırma.
 * [**VERSION.md**](VERSION.md): SemVer 2.0 sürüm numaralandırması ve sistem uyumluluk matrisi.
 * [**CHANGELOG.md**](CHANGELOG.md): Sürümler arası değişiklikler, eklenen özellikler ve hata düzeltmeleri.
@@ -49,5 +48,4 @@ Bu dizin, projenin mimarisi, geliştirme standartları, paketleme kılavuzları,
 | CLI Seçenekleri | [CLI_REFERENCE.md](CLI_REFERENCE.md) | İleri Seviye Kullanıcılar |
 | Yeni Uygulama Ekleme | [UYGULAMA_BAGLAMA.md](UYGULAMA_BAGLAMA.md) | Topluluk & Paket Sorumluları |
 | Çeviri Yapma | [TRANSLATION_GUIDE.md](TRANSLATION_GUIDE.md) | Çevirmenler |
-| Çatallama & Dağıtım | [FORK.md](FORK.md) | Linux Dağıtım Geliştiricileri |
 | Güvenlik Politikası | [SECURITY.md](SECURITY.md) | Güvenlik Araştırmacıları |

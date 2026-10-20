@@ -1,0 +1,335 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-20 19:03+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/ui/MainWindowAdw.py:47
+msgid "Pars Welcome Hakkında"
+msgstr "About Pars Welcome"
+
+#: src/ui/MainWindowAdw.py:58
+msgid "Genel Bakış"
+msgstr "Overview"
+
+#: src/ui/MainWindowAdw.py:61
+msgid "İlk Adımlar"
+msgstr "First Steps"
+
+#: src/ui/MainWindowAdw.py:64 src/ui/pages/PageWelcome.py:205
+msgid "Uygulamalar"
+msgstr "Applications"
+
+#: src/ui/MainWindowAdw.py:67
+msgid "Topluluk"
+msgstr "Community"
+
+#: src/ui/MainWindowAdw.py:80
+msgid "Sistem açılışında bu pencereyi göster"
+msgstr "Show this window on system startup"
+
+#: src/ui/MainWindowAdw.py:109
+msgid "Açılışta otomatik başlatma etkinleştirildi"
+msgstr "Autostart on startup enabled"
+
+#: src/ui/MainWindowAdw.py:111
+msgid "Açılışta otomatik başlatma kapatıldı"
+msgstr "Autostart on startup disabled"
+
+#: src/ui/MainWindowAdw.py:118
+msgid "Pars Linux Geliştirici Ekibi"
+msgstr "Pars Linux Developer Team"
+
+#: src/ui/MainWindowAdw.py:123
+msgid ""
+"Pars Linux kullanıcıları için tasarlanmış modern, hızlı ve zarif karşılama "
+"merkezi."
+msgstr ""
+
+#: src/ui/pages/PageWelcome.py:72
+msgid "Pars Linux'a Hoş Geldiniz"
+msgstr "Welcome to Pars Linux"
+
+#: src/ui/pages/PageWelcome.py:79
+msgid "ile modern, hızlı ve güvenli bir masaüstü deneyimi."
+msgstr "delivers a modern, fast, and secure desktop experience."
+
+#: src/ui/pages/PageWelcome.py:90
+msgid "Masaüstü"
+msgstr "Desktop"
+
+#: src/ui/pages/PageWelcome.py:108
+msgid "Sistem ve Donanım Durumu"
+msgstr "System & Hardware Status"
+
+#: src/ui/pages/PageWelcome.py:109
+msgid "Bilgisayarınızın temel donanım ve kaynak kullanımı"
+msgstr "Basic hardware and resource utilization of your computer"
+
+#: src/ui/pages/PageWelcome.py:121
+msgid "İşlemci"
+msgstr "Processor"
+
+#: src/ui/pages/PageWelcome.py:124
+msgid "Mimari"
+msgstr "Architecture"
+
+#: src/ui/pages/PageWelcome.py:130
+msgid "Grafik Kartı"
+msgstr "Graphics Card"
+
+#: src/ui/pages/PageWelcome.py:133
+msgid "Donanım Hızlandırma Aktif"
+msgstr "Hardware Acceleration Active"
+
+#: src/ui/pages/PageWelcome.py:140
+msgid "Bellek (RAM)"
+msgstr "Memory (RAM)"
+
+#: src/ui/pages/PageWelcome.py:143
+msgid "Kullanımda"
+msgstr "In Use"
+
+#: src/ui/pages/PageWelcome.py:151
+msgid "Depolama (/ Kök)"
+msgstr "Storage (/ Root)"
+
+#: src/ui/pages/PageWelcome.py:154
+msgid "Dolu"
+msgstr "Used"
+
+#: src/ui/pages/PageWelcome.py:169
+msgid "Hızlı Başlangıç"
+msgstr "Quick Start"
+
+#: src/ui/pages/PageWelcome.py:170
+msgid "Sisteminizi özelleştirmeye başlayın"
+msgstr "Start customizing your system"
+
+#: src/ui/pages/PageWelcome.py:174
+msgid "Sistemi Güncelle (Pars Update)"
+msgstr "Update System (Pars Update)"
+
+#: src/ui/pages/PageWelcome.py:175
+msgid "Güvenlik ve paket güncellemelerini anında denetleyin"
+msgstr "Check security and package updates instantly"
+
+#: src/ui/pages/PageWelcome.py:178 src/ui/pages/PageFirstSteps.py:273
+msgid "Güncelle"
+msgstr "Update"
+
+#: src/ui/pages/PageWelcome.py:188
+msgid "Görünüm ve İlk Adımlar"
+msgstr "Appearance and First Steps"
+
+#: src/ui/pages/PageWelcome.py:189
+msgid "Karanlık/Aydınlık tema, ekran ayarları ve sistem yedekleme"
+msgstr "Dark/Light theme, display settings and system backup"
+
+#: src/ui/pages/PageWelcome.py:192 src/ui/pages/PageFirstSteps.py:218
+msgid "Yapılandır"
+msgstr "Configure"
+
+#: src/ui/pages/PageWelcome.py:201
+msgid "Önerilen Uygulamaları Keşfet"
+msgstr "Discover Recommended Apps"
+
+#: src/ui/pages/PageWelcome.py:202
+msgid "Tarayıcılar, ofis, kodlama ve eğlence paketlerini tek tıkla kurun"
+msgstr "Install browsers, office, coding and multimedia suites in one click"
+
+#: src/ui/pages/PageFirstSteps.py:51
+msgid "Görünüm ve Renk Teması"
+msgstr "Appearance and Color Scheme"
+
+#: src/ui/pages/PageFirstSteps.py:52
+msgid "Masaüstü ve uygulama arayüzü renk stilinizi belirleyin"
+msgstr "Customize your desktop and application color palette"
+
+#: src/ui/pages/PageFirstSteps.py:63
+msgid "Açık Tema"
+msgstr "Light Theme"
+
+#: src/ui/pages/PageFirstSteps.py:65
+msgid "Koyu Tema"
+msgstr "Dark Theme"
+
+#: src/ui/pages/PageFirstSteps.py:67
+msgid "Sistem"
+msgstr "System"
+
+#: src/ui/pages/PageFirstSteps.py:118
+msgid "Masaüstü Arka Planı"
+msgstr "Desktop Wallpaper"
+
+#: src/ui/pages/PageFirstSteps.py:119
+msgid "Pars Linux temalı veya sistem duvar kağıtlarını uygulayın"
+msgstr "Apply Pars Linux themed or system wallpapers"
+
+#: src/ui/pages/PageFirstSteps.py:144
+msgid "Tüm Duvar Kağıtları Galerisi"
+msgstr "All Wallpapers Gallery"
+
+#: src/ui/pages/PageFirstSteps.py:145
+msgid "Mevcut"
+msgstr "Available"
+
+#: src/ui/pages/PageFirstSteps.py:145
+msgid "adet duvar kağıdını inceleyin, filtreleyin ve arayın"
+msgstr "wallpapers to explore, filter and search"
+
+#: src/ui/pages/PageFirstSteps.py:148
+msgid "Galeriyi Aç"
+msgstr "Browse Gallery"
+
+#: src/ui/pages/PageFirstSteps.py:188 src/ui/widgets/WallpaperDialog.py:207
+msgid "duvar kağıdı uygulandı."
+msgstr "wallpaper applied."
+
+#: src/ui/pages/PageFirstSteps.py:191 src/ui/widgets/WallpaperDialog.py:213
+msgid "Duvar kağıdı uygulanamadı!"
+msgstr "Failed to apply wallpaper!"
+
+#: src/ui/pages/PageFirstSteps.py:209
+msgid "Kişiselleştirme"
+msgstr "Customization"
+
+#: src/ui/pages/PageFirstSteps.py:210
+msgid "Monitör ve ekran görüntüleme seçenekleri"
+msgstr "Monitor and display preferences"
+
+#: src/ui/pages/PageFirstSteps.py:214
+msgid "Ekran Çözünürlüğü ve Ölçekleme"
+msgstr "Display Resolution and Scaling"
+
+#: src/ui/pages/PageFirstSteps.py:215
+msgid "Monitör yenileme hızı, çözünürlük ve HiDPI (100% / 200%) ölçekleme"
+msgstr "Monitor refresh rate, resolution and HiDPI scaling"
+
+#: src/ui/pages/PageFirstSteps.py:227
+msgid "Uygulama Dili"
+msgstr "Application Language"
+
+#: src/ui/pages/PageFirstSteps.py:228
+msgid "Karşılama merkezinin arayüz dilini belirleyin"
+msgstr "Choose display language for the welcome center"
+
+#: src/ui/pages/PageFirstSteps.py:232
+msgid "Sistem Varsayılanı"
+msgstr "System Default"
+
+#: src/ui/pages/PageFirstSteps.py:252
+msgid ""
+"Dil ayarı kaydedildi. Uygulandığını görmek için pencereyi yeniden başlatın."
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:264
+msgid "Sistem Yönetimi ve Güvenlik"
+msgstr "System Management and Security"
+
+#: src/ui/pages/PageFirstSteps.py:265
+msgid "Güncellemeler, yedekleme ve denetim masası"
+msgstr "Updates, backup and control center"
+
+#: src/ui/pages/PageFirstSteps.py:269
+msgid "Pars Update (Paket Güncelleyici)"
+msgstr "Pars Update (Package Manager)"
+
+#: src/ui/pages/PageFirstSteps.py:270
+msgid "Dağıtım paketlerini, çekirdeği ve güvenlik yamalarını güncelleyin"
+msgstr "Keep distribution packages, kernel and security patches up to date"
+
+#: src/ui/pages/PageFirstSteps.py:283
+msgid "Sistem Anlık Görüntüsü (Snapshot)"
+msgstr "System Snapshot"
+
+#: src/ui/pages/PageFirstSteps.py:284
+msgid "Olası bir sistem arızasında sistemi geri yüklemek için yedek oluşturun"
+msgstr "Create snapshots to restore system state in case of failure"
+
+#: src/ui/pages/PageFirstSteps.py:287
+msgid "Yedekle"
+msgstr "Backup"
+
+#: src/ui/pages/PageFirstSteps.py:296
+msgid "Sistem Kontrol Merkezi"
+msgstr "System Control Center"
+
+#: src/ui/pages/PageFirstSteps.py:297
+msgid "Ağ, Bluetooth, ses, kullanıcılar ve tüm donanım seçenekleri"
+msgstr "Network, Bluetooth, sound, users and hardware options"
+
+#: src/ui/pages/PageFirstSteps.py:300
+msgid "Ayarlar"
+msgstr "Settings"
+
+#: src/ui/pages/PageApps.py:27
+msgid "Uygulama adı veya açıklama ile ara..."
+msgstr "Search by app name or description..."
+
+#: src/ui/pages/PageApps.py:100 src/ui/pages/PageApps.py:147
+msgid "Kurulu"
+msgstr "Installed"
+
+#: src/ui/pages/PageApps.py:105 src/ui/pages/PageApps.py:142
+msgid "Başlat"
+msgstr "Launch"
+
+#: src/ui/pages/PageApps.py:110
+msgid "Kur"
+msgstr "Install"
+
+#: src/ui/pages/PageApps.py:152
+msgid "Tekrar Dene"
+msgstr "Retry"
+
+#: src/ui/pages/PageCommunity.py:36
+msgid "Pars Linux Topluluğu ve Destek"
+msgstr "Pars Linux Community & Support"
+
+#: src/ui/pages/PageCommunity.py:37
+msgid "Sorularınız, katkılarınız ve önerileriniz için topluluğumuza katılın"
+msgstr "Join our community for help, questions, contributions and feedback"
+
+#: src/ui/widgets/WallpaperDialog.py:17
+msgid "Duvar Kağıtları Galerisi"
+msgstr "Wallpaper Gallery"
+
+#: src/ui/widgets/WallpaperDialog.py:37
+msgid "Dosyadan Özel Duvar Kağıdı Ekle"
+msgstr "Add Custom Wallpaper from File"
+
+#: src/ui/widgets/WallpaperDialog.py:50
+msgid "Duvar kağıdı adı veya kategori ara..."
+msgstr "Search wallpaper name or category..."
+
+#: src/ui/widgets/WallpaperDialog.py:98 src/ui/widgets/WallpaperDialog.py:120
+#: src/ui/widgets/WallpaperDialog.py:219
+msgid "Tümü"
+msgstr "All"
+
+#: src/ui/widgets/WallpaperDialog.py:167 src/ui/widgets/WallpaperDialog.py:198
+#: src/ui/widgets/WallpaperDialog.py:201
+msgid "Aktif"
+msgstr "Active"
+
+#: src/ui/widgets/WallpaperDialog.py:231
+msgid "Duvar Kağıdı Resmi Seç"
+msgstr "Select Wallpaper Image"
+
+#: src/ui/widgets/WallpaperDialog.py:235
+msgid "Resim Dosyaları (*.jpg, *.png, *.svg, *.webp)"
+msgstr "Image Files (*.jpg, *.png, *.svg, *.webp)"

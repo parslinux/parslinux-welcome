@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Sky Gradient -->
+    <linearGradient id="sky-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141829"/>
+      <stop offset="35%" stop-color="#28264d"/>
+      <stop offset="65%" stop-color="#703862"/>
+      <stop offset="85%" stop-color="#ba5353"/>
+      <stop offset="100%" stop-color="#e88556"/>
+    </linearGradient>
+    
+    <!-- Sun Gradient -->
+    <radialGradient id="sun-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe699"/>
+      <stop offset="50%" stop-color="#ffb86c"/>
+      <stop offset="100%" stop-color="#ff79c6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky Base -->
+  <rect width="1920" height="1080" fill="url(#sky-grad)"/>
+
+  <!-- Glowing Sun -->
+  <circle cx="960" cy="560" r="160" fill="url(#sun-grad)"/>
+
+  <!-- Distant Mountains Layer 1 -->
+  <path d="M 0 680 L 220 540 L 460 660 L 720 500 L 980 640 L 1260 520 L 1520 650 L 1740 560 L 1920 640 L 1920 1080 L 0 1080 Z" fill="#32213e" opacity="0.85"/>
+
+  <!-- Mid Mountains Layer 2 -->
+  <path d="M 0 760 L 320 620 L 600 750 L 880 610 L 1150 720 L 1440 600 L 1680 730 L 1920 640 L 1920 1080 L 0 1080 Z" fill="#1e182e" opacity="0.95"/>
+
+  <!-- Foreground Mountains Layer 3 -->
+  <path d="M 0 860 L 240 760 L 520 880 L 800 740 L 1080 860 L 1380 750 L 1640 850 L 1920 780 L 1920 1080 L 0 1080 Z" fill="#110d1c"/>
+
+  <!-- Stars / Ambient Sparks in Sky -->
+  <circle cx="280" cy="180" r="2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="540" cy="120" r="1.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="820" cy="220" r="2.5" fill="#ffffff" opacity="0.5"/>
+  <circle cx="1180" cy="140" r="2" fill="#ffffff" opacity="0.7"/>
+  <circle cx="1460" cy="200" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="1720" cy="110" r="2" fill="#ffffff" opacity="0.8"/>
+
+  <!-- Pars Paw Badge Watermark Top Right -->
+  <g transform="translate(1820, 80) scale(0.7)" opacity="0.4">
+    <path d="M 44 76 C 44 64, 52 62, 64 62 C 76 62, 84 64, 84 76 C 84 88, 76 96, 64 96 C 52 96, 44 88, 44 76 Z" fill="#ffffff"/>
+    <ellipse cx="40" cy="54" rx="7" ry="10" transform="rotate(-20 40 54)" fill="#ffffff"/>
+    <ellipse cx="54" cy="46" rx="7" ry="11" transform="rotate(-6 54 46)" fill="#ffffff"/>
+    <ellipse cx="74" cy="46" rx="7" ry="11" transform="rotate(6 74 46)" fill="#ffffff"/>
+    <ellipse cx="88" cy="54" rx="7" ry="10" transform="rotate(20 88 54)" fill="#ffffff"/>
+  </g>
+</svg>

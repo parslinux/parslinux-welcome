@@ -46,4 +46,8 @@ EOF
     if [ -d data/icons/hicolor ]; then
         cp -r data/icons/hicolor/* "$pkgdir/usr/share/icons/hicolor/"
     fi
+    if [ -d data/locale ]; then
+        mkdir -p "$pkgdir/usr/share/locale"
+        cp -r data/locale/* "$pkgdir/usr/share/locale/"
+    fi
 }

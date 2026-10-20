@@ -26,19 +26,34 @@
    - [x] `PageCommunity.py`: Web, forum, Telegram, Wiki ve GitHub yönlendirme kartları.
 
 4. **Veri ve Tasarım Dosyaları:**
-   - [x] `data/style.css`: Modern gölgeler, kart borderları ve accent renkleri.
+   - [x] `data/style.css`: Modern Libadwaita & GTK4 uyumlu stil dosyası. Standart dışı / eski `@define-color`, `alpha()` ve `filter` sözdizimleri, W3C CSS ve GTK 4.12+ standartlarına uygun `var(--...)` değişkenleri ve `color-mix(in srgb, ...)` fonksiyonlarıyla modernize edilerek editör ve tema ayrıştırıcı uyarıları sıfırlandı.
    - [x] `data/org.parslinux.welcome.svg`: Özgün vektörel leopar pençesi ve karşılama rozeti ikonu.
    - [x] `data/org.parslinux.welcome.desktop`: Masaüstü ve autostart standart başlatıcısı.
+   - [x] `data/icons/apps/`: 14 popüler uygulama için yüksek kaliteli bağımsız SVG simge paketi.
+   - [x] `data/wallpapers/`: Pars Linux temalı özgün 1080p vektörel duvar kağıtları (`parslinux-leopard-dark.svg`, `parslinux-aurora-light.svg`).
 
-5. **Test & Güvenlik:**
+5. **Evrensel Duvar Kağıdı ve Kişiselleştirme Modülü:**
+   - [x] `WallpaperManager.py`: Yalnızca tüm masaüstü ortamlarında çalışan evrensel formatları (`.png`, `.jpg`, `.svg`, `.webp`) filtreleyip tarayan motor (GNOME-spesifik `.jxl` bağımlılığı kaldırıldı).
+   - [x] Evrensel Masaüstü & Pencere Yöneticisi Desteği: GNOME, KDE Plasma 5/6, XFCE, Cinnamon, MATE, LXQt, Hyprland, Sway ve X11 (`feh`/`nitrogen`/`xwallpaper`) için otomatik tespit ve arka plan uygulama desteği.
+   - [x] Özgün Pars Linux Koleksiyonu: `parslinux-leopard-dark.svg`, `parslinux-aurora-light.svg`, `parslinux-sunset-mountain.svg`, `parslinux-minimal-slate.svg`.
+   - [x] `WallpaperDialog.py`: Kategori filtreleme, arama ve kullanıcının istediği herhangi bir resmi seçip masaüstüne uygulayabileceği "Dosyadan Ekle" butonlu galeri penceresi.
+   - [x] `PageFirstSteps.py`: Doğrudan ana sayfadan tıklanabilen 4 Pars Linux duvar kağıdı şeridi ve tam galeri açıcı buton entegrasyonu.
+
+6. **Çoklu Dil Desteği (i18n):**
+   - [x] GNU `gettext` altyapısı ve `I18n.py` modülü entegre edildi.
+   - [x] Tüm arayüz dizgeleri `_()` ile sarmalandı.
+   - [x] `po/parslinux-welcome.pot`, `po/tr.po` ve `po/en.po` dosyaları oluşturuldu.
+   - [x] `data/locale/tr` ve `data/locale/en` ikili MO katalogları derlendi.
+   - [x] `PageFirstSteps.py`: Sistem varsayılanı, Türkçe ve İngilizce arasında geçiş sağlayan dinamik dil seçici açılır kutusu (`Gtk.DropDown`).
+   - [x] `build-i18n.sh`: Çevirileri tek komutla güncelleme ve derleme betiği.
+
+7. **Test & Güvenlik:**
    - [x] Pango markup koruması (`GLib.markup_escape_text`) entegre edildi.
-   - [x] `tests/test_welcome.py` ile birim testleri yazıldı (4 test, %100 başarılı).
+   - [x] `tests/test_welcome.py` ile birim testleri (6 test, %100 başarılı).
 
 ---
 
 ### 📋 Gelecek Yol Haritası (Sıradaki Adımlar)
 
-- [ ] **Dahili Duvar Kağıdı Seçicisi:** Pardus/Mint tarzında önceden tanımlı Pars Linux duvar kağıtlarını seçebilme galerisi.
-- [ ] **Çoklu Dil Desteği (i18n):** `gettext` altyapısı ile Türkçe ve İngilizce PO/MO dosyalarının bağlanması.
-- [ ] **Sürücü Algılama:** Ekran kartı (Nvidia / AMD) ve Wi-Fi sürücüsü kontrolü eklenmesi.
+- [ ] **Sürücü Algılama:** Ekran kartı (Nvidia / AMD / Intel) ve Wi-Fi sürücüsü kontrolü eklenmesi.
 - [ ] **Karşılama Turu (Tour Mode):** İlk kez oturum açan kullanıcılar için `Adw.Carousel` tabanlı 3 adımlı hoş geldiniz sihirbazı.

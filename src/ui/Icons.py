@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 from gi.repository import Gtk, Gdk, GLib
+from src.Config import get_data_path
 
 # --- KOD İÇİNE GÖMÜLÜ KORUMALI SVG İKONLARI ---
 
@@ -77,6 +79,13 @@ INTERNAL_SVGS = {
     "drive-harddisk-symbolic": SVG_DISK,
 }
 
+SYMBOLIC_ALIASES = {
+    "software-store-symbolic": "system-software-install-symbolic",
+    "preferences-desktop-theme-symbolic": "preferences-desktop-appearance-symbolic",
+    "external-link-symbolic": "adw-external-link-symbolic",
+    "globe-symbolic": "web-browser-symbolic",
+}
+
 _texture_cache = {}
 
 class Icons:
@@ -96,26 +105,29 @@ class Icons:
     @classmethod
     def create_image(cls, icon_name: str, pixel_size: int = 32) -> Gtk.Image:
         """
-        Kod içine gömülü SVG'leri önceliklendirerek sistem temasından bağımsız
-        kesintisiz çalışan Gtk.Image üretir.
+        Kod içine gömülü SVG'leri ve güvenli fallback haritasını önceliklendirerek
+        kesintisiz ve kırılmayan Gtk.Image üretir.
         """
-        # 1. Dahili SVG önceliği
-        if icon_name in INTERNAL_SVGS:
-            texture = cls.get_texture_from_svg(INTERNAL_SVGS[icon_name])
+        # 1. Bilinen alias/eşleme kontrolü
+        resolved_name = SYMBOLIC_ALIASES.get(icon_name, icon_name)
+
+        # 2. Dahili SVG önceliği
+        if resolved_name in INTERNAL_SVGS:
+            texture = cls.get_texture_from_svg(INTERNAL_SVGS[resolved_name])
             img = Gtk.Image.new_from_paintable(texture)
             img.set_pixel_size(pixel_size)
             return img
 
-        # 2. Sistem temasını kontrol et
+        # 3. Sistem temasını kontrol et
         display = Gdk.Display.get_default()
         if display:
             theme = Gtk.IconTheme.get_for_display(display)
-            if theme.has_icon(icon_name):
-                img = Gtk.Image.new_from_icon_name(icon_name)
+            if theme.has_icon(resolved_name):
+                img = Gtk.Image.new_from_icon_name(resolved_name)
                 img.set_pixel_size(pixel_size)
                 return img
 
-        # 3. Akıllı eşleme ve fallback
+        # 4. Akıllı anahtar kelime eşleme ve fallback
         if "light" in icon_name or "sun" in icon_name or "bright" in icon_name:
             texture = cls.get_texture_from_svg(SVG_LIGHT_MODE)
             img = Gtk.Image.new_from_paintable(texture)
@@ -147,7 +159,57 @@ class Icons:
             img.set_pixel_size(pixel_size)
             return img
 
-        # Varsayılan Gtk.Image
-        img = Gtk.Image.new_from_icon_name(icon_name)
+        # 5. Güvenli genel fallback (soru işareti göstermemek için)
+        if display:
+            theme = Gtk.IconTheme.get_for_display(display)
+            for fallback in ["application-x-executable-symbolic", "package-x-generic-symbolic"]:
+                if theme.has_icon(fallback):
+                    img = Gtk.Image.new_from_icon_name(fallback)
+                    img.set_pixel_size(pixel_size)
+                    return img
+
+        img = Gtk.Image.new_from_icon_name("application-x-executable-symbolic")
         img.set_pixel_size(pixel_size)
         return img
+
+    @classmethod
+    def create_app_image(cls, app: dict, pixel_size: int = 34) -> Gtk.Image:
+        """
+        Uygulamalar sayfası için yerel paketlenmiş yüksek kaliteli SVG/PNG ikonlarını
+        veya sistem ikonlarını kullanarak net, kırılmayan bir Gtk.Image üretir.
+        """
+        app_id = app.get("id", "")
+        icon_name = app.get("icon", "")
+
+        # 1. data/icons/apps/ altındaki yerel yüksek kaliteli ikon dosyalarını kontrol et
+        candidates = [
+            f"icons/apps/{app_id}.svg",
+            f"icons/apps/{app_id}.png",
+            f"icons/apps/{icon_name}.svg",
+            f"icons/apps/{icon_name}.png",
+        ]
+        for candidate in candidates:
+            path = get_data_path(candidate)
+            if os.path.exists(path):
+                img = Gtk.Image.new_from_file(path)
+                img.set_pixel_size(pixel_size)
+                return img
+
+        # 2. Sistem temasını kontrol et
+        display = Gdk.Display.get_default()
+        if display and icon_name:
+            theme = Gtk.IconTheme.get_for_display(display)
+            if theme.has_icon(icon_name):
+                img = Gtk.Image.new_from_icon_name(icon_name)
+                img.set_pixel_size(pixel_size)
+                return img
+
+        # 3. Kategoriye göre genel yedek simge
+        category_fallbacks = {
+            "internet": "applications-internet-symbolic",
+            "development": "applications-development-symbolic",
+            "multimedia": "applications-multimedia-symbolic",
+            "office": "applications-office-symbolic"
+        }
+        fallback_icon = category_fallbacks.get(app.get("category", ""), "application-x-executable-symbolic")
+        return cls.create_image(fallback_icon, pixel_size=pixel_size)

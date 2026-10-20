@@ -5,6 +5,7 @@ from gi.repository import Gtk, Adw, Gio
 from src.Config import APP_NAME, VERSION, APP_ID
 from src.core.AutostartManager import AutostartManager
 from src.core.DesktopActions import DesktopActions
+from src.core.I18n import _
 from src.ui.pages.PageWelcome import PageWelcome
 from src.ui.pages.PageFirstSteps import PageFirstSteps
 from src.ui.pages.PageApps import PageApps
@@ -43,7 +44,7 @@ class MainWindowAdw(Adw.ApplicationWindow):
         # Başlık sağ butonları: Hakkında butonu
         btn_about = Gtk.Button()
         btn_about.set_icon_name("help-about-symbolic")
-        btn_about.set_tooltip_text("Pars Welcome Hakkında")
+        btn_about.set_tooltip_text(_("Pars Welcome Hakkında"))
         btn_about.connect("clicked", self._on_about_clicked)
         header.pack_end(btn_about)
 
@@ -54,16 +55,16 @@ class MainWindowAdw(Adw.ApplicationWindow):
         self.page_community = PageCommunity(self)
 
         self.stack.add_titled_with_icon(
-            self.page_welcome, "welcome", "Genel Bakış", "user-home-symbolic"
+            self.page_welcome, "welcome", _("Genel Bakış"), "user-home-symbolic"
         )
         self.stack.add_titled_with_icon(
-            self.page_first_steps, "first_steps", "İlk Adımlar", "preferences-system-symbolic"
+            self.page_first_steps, "first_steps", _("İlk Adımlar"), "preferences-system-symbolic"
         )
         self.stack.add_titled_with_icon(
-            self.page_apps, "apps", "Uygulamalar", "software-store-symbolic"
+            self.page_apps, "apps", _("Uygulamalar"), "system-software-install-symbolic"
         )
         self.stack.add_titled_with_icon(
-            self.page_community, "community", "Topluluk", "system-users-symbolic"
+            self.page_community, "community", _("Topluluk"), "system-users-symbolic"
         )
 
         main_box.append(self.stack)
@@ -76,7 +77,7 @@ class MainWindowAdw(Adw.ApplicationWindow):
         bottom_bar.set_margin_top(8)
         bottom_bar.set_margin_bottom(10)
 
-        self.chk_autostart = Gtk.CheckButton(label="Sistem açılışında bu pencereyi göster")
+        self.chk_autostart = Gtk.CheckButton(label=_("Sistem açılışında bu pencereyi göster"))
         self.chk_autostart.set_active(AutostartManager.is_enabled())
         self.chk_autostart.connect("toggled", self._on_autostart_toggled)
         bottom_bar.append(self.chk_autostart)
@@ -105,21 +106,21 @@ class MainWindowAdw(Adw.ApplicationWindow):
         is_active = checkbutton.get_active()
         AutostartManager.set_enabled(is_active)
         if is_active:
-            self.show_toast("Açılışta otomatik başlatma etkinleştirildi")
+            self.show_toast(_("Açılışta otomatik başlatma etkinleştirildi"))
         else:
-            self.show_toast("Açılışta otomatik başlatma kapatıldı")
+            self.show_toast(_("Açılışta otomatik başlatma kapatıldı"))
 
     def _on_about_clicked(self, button):
         """Modern Adw.AboutWindow diyaloğunu açar."""
         about = Adw.AboutWindow(transient_for=self)
         about.set_application_name(APP_NAME)
         about.set_version(VERSION)
-        about.set_developer_name("Pars Linux Geliştirici Ekibi")
+        about.set_developer_name(_("Pars Linux Geliştirici Ekibi"))
         about.set_license_type(Gtk.License.GPL_3_0)
         about.set_website("https://parslinux.org")
         about.set_issue_url("https://github.com/parslinux/parslinux-welcome/issues")
         about.set_comments(
-            "Pars Linux kullanıcıları için tasarlanmış modern, hızlı ve zarif karşılama merkezi."
+            _("Pars Linux kullanıcıları için tasarlanmış modern, hızlı ve zarif karşılama merkezi.")
         )
         about.set_application_icon("org.parslinux.welcome")
         about.present()

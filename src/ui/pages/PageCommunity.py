@@ -5,6 +5,7 @@ import json
 from gi.repository import Gtk, Adw, GLib
 from src.Config import get_data_path
 from src.core.DesktopActions import DesktopActions
+from src.core.I18n import _
 
 class PageCommunity(Gtk.Box):
     """Topluluk, wiki ve destek bağlantıları sayfası."""
@@ -32,8 +33,8 @@ class PageCommunity(Gtk.Box):
 
         # Topluluk Grubu
         group = Adw.PreferencesGroup()
-        group.set_title("Pars Linux Topluluğu ve Destek")
-        group.set_description("Sorularınız, katkılarınız ve önerileriniz için topluluğumuza katılın")
+        group.set_title(_("Pars Linux Topluluğu ve Destek"))
+        group.set_description(_("Sorularınız, katkılarınız ve önerileriniz için topluluğumuza katılın"))
 
         links_file = get_data_path("links.json")
         try:
@@ -54,7 +55,7 @@ class PageCommunity(Gtk.Box):
             url = item.get("url", "")
 
             btn_open = Gtk.Button()
-            btn_open.set_icon_name("external-link-symbolic")
+            btn_open.set_icon_name("adw-external-link-symbolic")
             btn_open.set_valign(Gtk.Align.CENTER)
             btn_open.add_css_class("flat")
             btn_open.connect("clicked", lambda b, u=url: DesktopActions.open_url(u))

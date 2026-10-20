@@ -6,6 +6,8 @@ from gi.repository import Gtk, Adw, GLib
 from src.Config import get_data_path
 from src.core.AppInstaller import AppInstaller
 from src.core.DesktopActions import DesktopActions
+from src.core.I18n import _
+from src.ui.Icons import Icons
 
 class PageApps(Gtk.Box):
     """Popüler ve önerilen uygulamaların listelendiği, arandığı ve kurulduğu modern sayfa."""
@@ -22,7 +24,7 @@ class PageApps(Gtk.Box):
         search_box.set_margin_top(14)
 
         self.search_entry = Gtk.SearchEntry()
-        self.search_entry.set_placeholder_text("Uygulama adı veya açıklama ile ara...")
+        self.search_entry.set_placeholder_text(_("Uygulama adı veya açıklama ile ara..."))
         self.search_entry.set_hexpand(True)
         self.search_entry.connect("search-changed", self._on_search_changed)
         search_box.append(self.search_entry)
@@ -82,8 +84,9 @@ class PageApps(Gtk.Box):
         row.set_title(title_text)
         row.set_subtitle(desc_text)
 
-        icon_name = app.get("icon", "application-x-executable")
-        row.set_icon_name(icon_name)
+        icon_img = Icons.create_app_image(app, pixel_size=36)
+        icon_img.set_valign(Gtk.Align.CENTER)
+        row.add_prefix(icon_img)
 
         cmd = app.get("cmd", "")
         flatpak_id = app.get("flatpak", "")
@@ -94,17 +97,17 @@ class PageApps(Gtk.Box):
         suffix_box.set_valign(Gtk.Align.CENTER)
 
         if is_installed:
-            badge = Gtk.Label(label="Kurulu")
+            badge = Gtk.Label(label=_("Kurulu"))
             badge.add_css_class("pill-badge")
             badge.add_css_class("installed")
             suffix_box.append(badge)
 
-            btn = Gtk.Button(label="Başlat")
+            btn = Gtk.Button(label=_("Başlat"))
             btn.connect("clicked", lambda b, c=cmd: DesktopActions.run_app_or_command(c))
             suffix_box.append(btn)
             row.set_activatable_widget(btn)
         else:
-            btn = Gtk.Button(label="Kur")
+            btn = Gtk.Button(label=_("Kur"))
             btn.add_css_class("suggested-action")
             btn.connect("clicked", lambda b, a=app, sb=suffix_box: self._on_install_clicked(b, a, sb))
             suffix_box.append(btn)
@@ -136,17 +139,17 @@ class PageApps(Gtk.Box):
         cmd = app.get("cmd", "")
         flatpak_id = app.get("flatpak", "")
         if AppInstaller.is_installed(cmd, flatpak_id):
-            button.set_label("Başlat")
+            button.set_label(_("Başlat"))
             button.remove_css_class("suggested-action")
             button.set_visible(True)
             button.connect("clicked", lambda b, c=cmd: DesktopActions.run_app_or_command(c))
 
-            badge = Gtk.Label(label="Kurulu")
+            badge = Gtk.Label(label=_("Kurulu"))
             badge.add_css_class("pill-badge")
             badge.add_css_class("installed")
             suffix_box.prepend(badge)
         else:
-            button.set_label("Tekrar Dene")
+            button.set_label(_("Tekrar Dene"))
             button.set_visible(True)
 
     def _on_search_changed(self, entry: Gtk.SearchEntry):

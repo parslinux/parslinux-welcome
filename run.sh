@@ -28,5 +28,12 @@ except Exception as e:
     sys.exit(1)
 " || exit 1
 
+# Eğer arka planda açık kalan eski bir geliştirme oturumu varsa temizle
+if pgrep -f "src/Main.py|pars-welcome" >/dev/null 2>&1; then
+    echo "--> Çalışan eski test oturumu sonlandırılıyor..."
+    pkill -f "src/Main.py|pars-welcome" 2>/dev/null || true
+    sleep 0.3
+fi
+
 # Uygulamayı başlat
 exec python3 "$SCRIPT_DIR/pars-welcome" "$@"

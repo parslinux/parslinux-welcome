@@ -53,5 +53,42 @@ class TestParsWelcome(unittest.TestCase):
         self.assertIn("show_on_startup", cfg)
         self.assertIn("theme_mode", cfg)
 
+    def test_wallpaper_manager(self):
+        from src.core.WallpaperManager import WallpaperManager
+        wps = WallpaperManager.get_available_wallpapers()
+        self.assertIsInstance(wps, list)
+        self.assertGreater(len(wps), 0, "En az bir duvar kağıdı bulunmalıdır!")
+        
+        # Pars Linux dahili duvar kağıdı varlığını doğrula
+        bundled = [w for w in wps if w.get("is_bundled")]
+        self.assertGreaterEqual(len(bundled), 2, "Pars Linux dahili duvar kağıtları yüklenmeli!")
+        for wp in bundled:
+            self.assertTrue(os.path.exists(wp["path"]))
+            self.assertIn("Pars", wp["name"])
+
+        # get_current_wallpaper metodu hata vermemeli
+        cur = WallpaperManager.get_current_wallpaper()
+        self.assertIsInstance(cur, str)
+
+    def test_i18n_support(self):
+        from src.core.I18n import set_language, _, get_current_language
+        
+        # MO dosyaları varlığı
+        tr_mo = get_data_path("locale/tr/LC_MESSAGES/parslinux-welcome.mo")
+        en_mo = get_data_path("locale/en/LC_MESSAGES/parslinux-welcome.mo")
+        self.assertTrue(os.path.exists(tr_mo), "tr.mo dosyası bulunamadı!")
+        self.assertTrue(os.path.exists(en_mo), "en.mo dosyası bulunamadı!")
+
+        # İngilizce çeviri testi
+        set_language("en", save=False)
+        self.assertEqual(_("İlk Adımlar"), "First Steps")
+        self.assertEqual(_("Uygulamalar"), "Applications")
+        self.assertEqual(_("Genel Bakış"), "Overview")
+
+        # Türkçe çeviri testi
+        set_language("tr", save=False)
+        self.assertEqual(_("İlk Adımlar"), "İlk Adımlar")
+        self.assertEqual(_("Uygulamalar"), "Uygulamalar")
+
 if __name__ == "__main__":
     unittest.main()

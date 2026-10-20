@@ -1,44 +1,43 @@
-/* Pars Welcome - Ultra Modern Libadwaita Stylesheet */
+/* Pars Welcome - Modern Libadwaita Stylesheet (GTK4 / Libadwaita Compliant) */
 
 /* Hero Banner */
 .welcome-hero {
     padding: 32px 28px;
-    background: linear-gradient(135deg, alpha(@accent_color, 0.16) 0%, alpha(@accent_color, 0.04) 60%, transparent 100%);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color) 16%, transparent) 0%, color-mix(in srgb, var(--accent-color) 4%, transparent) 60%, transparent 100%);
     border-radius: 20px;
-    border: 1px solid alpha(@accent_color, 0.2);
+    border: 1px solid color-mix(in srgb, var(--accent-color) 20%, transparent);
     margin-bottom: 8px;
 }
 
 .welcome-logo {
-    -gtk-icon-size: 72px;
-    filter: drop-shadow(0 6px 12px alpha(@accent_color, 0.3));
+    min-width: 72px;
+    min-height: 72px;
 }
 
 .welcome-title {
     font-size: 28px;
-    font-weight: 850;
+    font-weight: 800;
     letter-spacing: -0.5px;
-    color: @window_fg_color;
+    color: var(--window-fg-color);
 }
 
 .welcome-subtitle {
     font-size: 15px;
     opacity: 0.8;
-    line-height: 1.4;
 }
 
 /* Stat & Hardware Cards */
 .stat-card {
-    background-color: alpha(@window_fg_color, 0.04);
+    background-color: color-mix(in srgb, var(--window-fg-color) 4%, transparent);
     border-radius: 14px;
     padding: 16px;
-    border: 1px solid alpha(@window_fg_color, 0.07);
+    border: 1px solid color-mix(in srgb, var(--window-fg-color) 7%, transparent);
     transition: all 200ms ease;
 }
 
 .stat-card:hover {
-    background-color: alpha(@window_fg_color, 0.07);
-    border-color: alpha(@accent_color, 0.3);
+    background-color: color-mix(in srgb, var(--window-fg-color) 7%, transparent);
+    border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
 }
 
 .stat-card-title {
@@ -51,7 +50,7 @@
 
 .stat-card-value {
     font-size: 17px;
-    font-weight: 750;
+    font-weight: 700;
     margin-top: 4px;
     margin-bottom: 6px;
 }
@@ -60,31 +59,31 @@
 .theme-card {
     padding: 18px 24px;
     border-radius: 16px;
-    border: 2px solid alpha(@window_fg_color, 0.1);
-    background-color: alpha(@window_fg_color, 0.03);
+    border: 2px solid color-mix(in srgb, var(--window-fg-color) 10%, transparent);
+    background-color: color-mix(in srgb, var(--window-fg-color) 3%, transparent);
     transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .theme-card:hover {
-    border-color: alpha(@accent_color, 0.5);
-    background-color: alpha(@window_fg_color, 0.06);
+    border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
+    background-color: color-mix(in srgb, var(--window-fg-color) 6%, transparent);
 }
 
 .theme-card.active {
-    border-color: @accent_color;
-    background-color: alpha(@accent_color, 0.12);
+    border-color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
 }
 
 .theme-card-light {
     background: linear-gradient(135deg, #ffffff, #f0f2f5);
     color: #1a1a1a;
-    border: 1px solid rgba(0,0,0,0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .theme-card-dark {
     background: linear-gradient(135deg, #242424, #181818);
     color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* Badges & Tags */
@@ -96,13 +95,13 @@
 }
 
 .pill-badge.installed {
-    background-color: alpha(@success_color, 0.18);
-    color: @success_color;
+    background-color: color-mix(in srgb, var(--success-color) 18%, transparent);
+    color: var(--success-color);
 }
 
 .pill-badge.available {
-    background-color: alpha(@accent_color, 0.15);
-    color: @accent_color;
+    background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
+    color: var(--accent-color);
 }
 
 /* App Rows */
@@ -112,18 +111,47 @@
 }
 
 .app-row:hover {
-    background-color: alpha(@window_fg_color, 0.04);
+    background-color: color-mix(in srgb, var(--window-fg-color) 4%, transparent);
 }
 
 /* Progress bar inside cards */
 progressbar.stat-bar trough {
     min-height: 6px;
     border-radius: 3px;
-    background-color: alpha(@window_fg_color, 0.1);
+    background-color: color-mix(in srgb, var(--window-fg-color) 10%, transparent);
 }
 
 progressbar.stat-bar progress {
     min-height: 6px;
     border-radius: 3px;
-    background-color: @accent_color;
+    background-color: var(--accent-color);
+}
+
+/* Wallpaper Cards */
+.wallpaper-card {
+    padding: 8px;
+    border-radius: 14px;
+    border: 2px solid color-mix(in srgb, var(--window-fg-color) 8%, transparent);
+    background-color: color-mix(in srgb, var(--window-fg-color) 3%, transparent);
+    transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wallpaper-card:hover {
+    border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
+    background-color: color-mix(in srgb, var(--window-fg-color) 6%, transparent);
+}
+
+.wallpaper-card.active {
+    border-color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
+}
+
+.wallpaper-thumb {
+    border-radius: 10px;
+}
+
+.wallpaper-title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 6px;
 }

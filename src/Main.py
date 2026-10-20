@@ -14,6 +14,7 @@ from gi.repository import Gtk, Adw, Gdk
 
 from src.Config import APP_ID, APP_NAME, get_data_path, load_config
 from src.core.DesktopActions import DesktopActions
+from src.core.I18n import init_i18n
 from src.ui.MainWindowAdw import MainWindowAdw
 
 class ParsWelcomeApp(Adw.Application):
@@ -26,8 +27,9 @@ class ParsWelcomeApp(Adw.Application):
         )
 
     def do_startup(self):
-        """Uygulama ilk ayağa kalkarken CSS ve stil ayarlarını yükler."""
+        """Uygulama ilk ayağa kalkarken dil, CSS ve stil ayarlarını yükler."""
         Adw.Application.do_startup(self)
+        init_i18n()
         self._load_styles()
         self._load_initial_theme()
 

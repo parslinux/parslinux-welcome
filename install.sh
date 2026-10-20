@@ -51,6 +51,11 @@ if [[ -d "${SCRIPT_DIR}/data/icons/hicolor" ]]; then
     cp -r "${SCRIPT_DIR}/data/icons/hicolor/"* "${INSTALL_PREFIX}/share/icons/hicolor/"
 fi
 
+if [[ -d "${SCRIPT_DIR}/data/locale" ]]; then
+    mkdir -p "${INSTALL_PREFIX}/share/locale"
+    cp -r "${SCRIPT_DIR}/data/locale/"* "${INSTALL_PREFIX}/share/locale/"
+fi
+
 # 5. Önbellekleri güncelle
 echo "--> Sistem veritabanları güncelleniyor..."
 if command -v update-desktop-database &>/dev/null; then

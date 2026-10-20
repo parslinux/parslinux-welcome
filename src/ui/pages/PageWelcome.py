@@ -4,6 +4,7 @@
 from gi.repository import Gtk, Adw, GLib
 from src.core.SystemInfo import SystemInfo
 from src.core.DesktopActions import DesktopActions
+from src.core.I18n import _
 from src.ui.widgets.InfoCard import StatCard
 from src.Config import get_data_path
 import os
@@ -68,14 +69,14 @@ class PageWelcome(Gtk.Box):
         vbox_text.set_hexpand(True)
         vbox_text.set_valign(Gtk.Align.CENTER)
 
-        lbl_title = Gtk.Label(label="Pars Linux'a Hoş Geldiniz")
+        lbl_title = Gtk.Label(label=_("Pars Linux'a Hoş Geldiniz"))
         lbl_title.add_css_class("welcome-title")
         lbl_title.set_halign(Gtk.Align.START)
         vbox_text.append(lbl_title)
 
         info = SystemInfo.get_all_summary()
         lbl_sub = Gtk.Label(
-            label=f"{info['os_name']} ile modern, hızlı ve güvenli bir masaüstü deneyimi."
+            label=f"{info['os_name']} {_('ile modern, hızlı ve güvenli bir masaüstü deneyimi.')}"
         )
         lbl_sub.add_css_class("welcome-subtitle")
         lbl_sub.set_halign(Gtk.Align.START)
@@ -86,7 +87,7 @@ class PageWelcome(Gtk.Box):
         badges_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
         badges_box.set_margin_top(4)
 
-        b_de = Gtk.Label(label=f"Masaüstü: {info['desktop']}")
+        b_de = Gtk.Label(label=f"{_('Masaüstü')}: {info['desktop']}")
         b_de.add_css_class("pill-badge")
         b_de.add_css_class("available")
 
@@ -104,8 +105,8 @@ class PageWelcome(Gtk.Box):
     def _build_dashboard_grid(self, container):
         """2 sütunlu modern donanım ve kaynak kullanım kartları."""
         group_dash = Adw.PreferencesGroup()
-        group_dash.set_title("Sistem ve Donanım Durumu")
-        group_dash.set_description("Bilgisayarınızın temel donanım ve kaynak kullanımı")
+        group_dash.set_title(_("Sistem ve Donanım Durumu"))
+        group_dash.set_description(_("Bilgisayarınızın temel donanım ve kaynak kullanımı"))
 
         grid = Gtk.Grid()
         grid.set_column_spacing(12)
@@ -117,29 +118,29 @@ class PageWelcome(Gtk.Box):
 
         # Kart 1: İşlemci (CPU)
         card_cpu = StatCard(
-            title="İşlemci",
+            title=_("İşlemci"),
             value=info["cpu"],
             icon_name="hardware-chip-symbolic",
-            subtitle=f"Mimari: {info['arch']}"
+            subtitle=f"{_('Mimari')}: {info['arch']}"
         )
         grid.attach(card_cpu, 0, 0, 1, 1)
 
         # Kart 2: Grafik Kartı (GPU)
         card_gpu = StatCard(
-            title="Grafik Kartı",
+            title=_("Grafik Kartı"),
             value=info["gpu"],
             icon_name="video-display-symbolic",
-            subtitle="Donanım Hızlandırma Aktif"
+            subtitle=_("Donanım Hızlandırma Aktif")
         )
         grid.attach(card_gpu, 1, 0, 1, 1)
 
         # Kart 3: Bellek (RAM) - Canlı Doluluk Çubuğu ile
         ram_pct = int(info["ram_fraction"] * 100)
         card_ram = StatCard(
-            title="Bellek (RAM)",
+            title=_("Bellek (RAM)"),
             value=info["ram_text"],
             icon_name="drive-harddisk-symbolic",
-            subtitle=f"%{ram_pct} Kullanımda",
+            subtitle=f"%{ram_pct} {_('Kullanımda')}",
             fraction=info["ram_fraction"]
         )
         grid.attach(card_ram, 0, 1, 1, 1)
@@ -147,10 +148,10 @@ class PageWelcome(Gtk.Box):
         # Kart 4: Depolama (Disk) - Canlı Doluluk Çubuğu ile
         disk_pct = int(info["disk_fraction"] * 100)
         card_disk = StatCard(
-            title="Depolama (/ Kök)",
+            title=_("Depolama (/ Kök)"),
             value=info["disk_text"],
             icon_name="drive-harddisk-symbolic",
-            subtitle=f"%{disk_pct} Dolu",
+            subtitle=f"%{disk_pct} {_('Dolu')}",
             fraction=info["disk_fraction"]
         )
         grid.attach(card_disk, 1, 1, 1, 1)
@@ -165,16 +166,16 @@ class PageWelcome(Gtk.Box):
     def _build_quick_actions(self, container):
         """Hızlı eylemler tercih grubu."""
         group_quick = Adw.PreferencesGroup()
-        group_quick.set_title("Hızlı Başlangıç")
-        group_quick.set_description("Sisteminizi özelleştirmeye başlayın")
+        group_quick.set_title(_("Hızlı Başlangıç"))
+        group_quick.set_description(_("Sisteminizi özelleştirmeye başlayın"))
 
         # 1. Pars Update Satırı
         row_update = Adw.ActionRow()
-        row_update.set_title("Sistemi Güncelle (Pars Update)")
-        row_update.set_subtitle("Güvenlik ve paket güncellemelerini anında denetleyin")
+        row_update.set_title(_("Sistemi Güncelle (Pars Update)"))
+        row_update.set_subtitle(_("Güvenlik ve paket güncellemelerini anında denetleyin"))
         row_update.set_icon_name("software-update-available-symbolic")
 
-        btn_update = Gtk.Button(label="Güncelle")
+        btn_update = Gtk.Button(label=_("Güncelle"))
         btn_update.add_css_class("suggested-action")
         btn_update.set_valign(Gtk.Align.CENTER)
         btn_update.connect("clicked", lambda b: DesktopActions.launch_pars_update())
@@ -184,11 +185,11 @@ class PageWelcome(Gtk.Box):
 
         # 2. İlk Adımlar Sekmesine Geçiş
         row_steps = Adw.ActionRow()
-        row_steps.set_title("Görünüm ve İlk Adımlar")
-        row_steps.set_subtitle("Karanlık/Aydınlık tema, ekran ayarları ve sistem yedekleme")
-        row_steps.set_icon_name("preferences-desktop-theme-symbolic")
+        row_steps.set_title(_("Görünüm ve İlk Adımlar"))
+        row_steps.set_subtitle(_("Karanlık/Aydınlık tema, ekran ayarları ve sistem yedekleme"))
+        row_steps.set_icon_name("preferences-desktop-appearance-symbolic")
 
-        btn_steps = Gtk.Button(label="Yapılandır")
+        btn_steps = Gtk.Button(label=_("Yapılandır"))
         btn_steps.set_valign(Gtk.Align.CENTER)
         btn_steps.connect("clicked", lambda b: self.main_window.switch_page("first_steps"))
         row_steps.add_suffix(btn_steps)
@@ -197,11 +198,11 @@ class PageWelcome(Gtk.Box):
 
         # 3. Popüler Uygulamalar Sekmesine Geçiş
         row_apps = Adw.ActionRow()
-        row_apps.set_title("Önerilen Uygulamaları Keşfet")
-        row_apps.set_subtitle("Tarayıcılar, ofis, kodlama ve eğlence paketlerini tek tıkla kurun")
-        row_apps.set_icon_name("software-store-symbolic")
+        row_apps.set_title(_("Önerilen Uygulamaları Keşfet"))
+        row_apps.set_subtitle(_("Tarayıcılar, ofis, kodlama ve eğlence paketlerini tek tıkla kurun"))
+        row_apps.set_icon_name("system-software-install-symbolic")
 
-        btn_apps = Gtk.Button(label="Uygulamalar")
+        btn_apps = Gtk.Button(label=_("Uygulamalar"))
         btn_apps.set_valign(Gtk.Align.CENTER)
         btn_apps.connect("clicked", lambda b: self.main_window.switch_page("apps"))
         row_apps.add_suffix(btn_apps)

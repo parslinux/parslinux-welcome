@@ -47,13 +47,19 @@
    - [x] `PageFirstSteps.py`: Sistem varsayılanı, Türkçe ve İngilizce arasında geçiş sağlayan dinamik dil seçici açılır kutusu (`Gtk.DropDown`).
    - [x] `build-i18n.sh`: Çevirileri tek komutla güncelleme ve derleme betiği.
 
-7. **Test & Güvenlik:**
+7. **Donanım ve Sürücü Algılama Modülü (`DriverManager.py`):**
+   - [x] GPU Tespiti: Intel, NVIDIA, AMD, Sanal Makine (VirtualBox/VMware/QEMU) ekran kartı ve aktif çekirdek sürücüsü tespiti (`i915`, `xe`, `nvidia`, `nouveau`, `amdgpu`).
+   - [x] NVIDIA Özel Sürücü Durumu & Önerisi: Açık kaynak `nouveau` tespit edildiğinde tek tıkla özel `nvidia` sürücüsü kurma aksiyonu.
+   - [x] Wi-Fi Tespiti: PCI ve USB kablosuz ağ adaptörleri tespiti, aktif çekirdek sürücüsü (`iwlwifi` vb.) ve bağlantı durumu kontrolü.
+   - [x] `PageFirstSteps.py` Entegrasyonu: "Donanım ve Sürücüler" tercih grubu altında detaylı sürücü ve bağlantı kartları.
+
+8. **Test & Güvenlik:**
    - [x] Pango markup koruması (`GLib.markup_escape_text`) entegre edildi.
-   - [x] `tests/test_welcome.py` ile birim testleri (6 test, %100 başarılı).
+   - [x] `tests/test_welcome.py` ile birim testleri (7 test, %100 başarılı).
 
 ---
 
 ### 📋 Gelecek Yol Haritası (Sıradaki Adımlar)
 
-- [ ] **Sürücü Algılama:** Ekran kartı (Nvidia / AMD / Intel) ve Wi-Fi sürücüsü kontrolü eklenmesi.
+- [x] **Sürücü Algılama:** Ekran kartı (Nvidia / AMD / Intel) ve Wi-Fi sürücüsü kontrolü eklenmesi.
 - [ ] **Karşılama Turu (Tour Mode):** İlk kez oturum açan kullanıcılar için `Adw.Carousel` tabanlı 3 adımlı hoş geldiniz sihirbazı.

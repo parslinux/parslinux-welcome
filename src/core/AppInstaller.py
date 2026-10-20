@@ -95,3 +95,36 @@ class AppInstaller:
         except Exception as e:
             print(f"Kurulum başlatılamadı: {e}")
             return False
+
+    @classmethod
+    def install_package(cls, pkg_name: str, title: str = "Paket") -> bool:
+        """Belirtilen sistem paketini uygun paket yöneticisi ile terminalde kurar."""
+        is_arch = shutil.which("pacman") is not None
+        if is_arch:
+            install_cmd = f"sudo pacman -S --needed {pkg_name}"
+        else:
+            install_cmd = f"sudo apt update && sudo apt install -y {pkg_name}"
+
+        term = cls.get_preferred_terminal()
+        full_script = f"echo '==> {title} Kuruluyor ({pkg_name})...'; {install_cmd}; echo 'İşlem tamamlandı. Kapatmak için Enter tuşuna basın...'; read"
+
+        if not term:
+            try:
+                subprocess.Popen(["pkexec", "bash", "-c", install_cmd])
+                return True
+            except Exception:
+                return False
+
+        try:
+            if term == "gnome-terminal" or term == "ptyxis":
+                subprocess.Popen([term, "--", "bash", "-c", full_script])
+            elif term == "xfce4-terminal":
+                subprocess.Popen([term, "-e", f"bash -c \"{full_script}\""])
+            elif term == "konsole":
+                subprocess.Popen([term, "-e", "bash", "-c", full_script])
+            else:
+                subprocess.Popen([term, "-e", f"bash -c '{full_script}'"])
+            return True
+        except Exception as e:
+            print(f"Paket kurulumu başlatılamadı: {e}")
+            return False

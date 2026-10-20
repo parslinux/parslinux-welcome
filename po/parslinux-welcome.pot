@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 19:03+0300\n"
+"POT-Creation-Date: 2026-10-20 19:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,73 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: src/core/DriverManager.py:103
+msgid "Özel NVIDIA Sürücüsü Aktif"
+msgstr ""
+
+#: src/core/DriverManager.py:106
+msgid "Açık Kaynak (Nouveau)"
+msgstr ""
+
+#: src/core/DriverManager.py:111 src/core/DriverManager.py:235
+msgid "Sürücü Yüklenmedi / Eksik"
+msgstr ""
+
+#: src/core/DriverManager.py:117
+#, python-brace-format
+msgid "Açık Kaynak Mesa / {drv} (Entegre)"
+msgstr ""
+
+#: src/core/DriverManager.py:121
+#, python-brace-format
+msgid "Açık Kaynak Intel Mesa / {drv} (Entegre)"
+msgstr ""
+
+#: src/core/DriverManager.py:124
+#, python-brace-format
+msgid "Sanal Makine Ekran Sürücüsü ({drv})"
+msgstr ""
+
+#: src/core/DriverManager.py:127
+#, python-brace-format
+msgid "Aktif Sürücü: {drv}"
+msgstr ""
+
+#: src/core/DriverManager.py:127
+msgid "Bilinmiyor"
+msgstr ""
+
+#: src/core/DriverManager.py:134 src/core/DriverManager.py:247
+msgid "Yok"
+msgstr ""
+
+#: src/core/DriverManager.py:239
+#, python-brace-format
+msgid "Bağlı ve Aktif ({drv})"
+msgstr ""
+
+#: src/core/DriverManager.py:241
+#, python-brace-format
+msgid "Sürücü Aktif ({drv})"
+msgstr ""
+
+#: src/core/DriverManager.py:260
+#, python-brace-format
+msgid "Kablosuz Ağ Arayüzü ({iface})"
+msgstr ""
+
+#: src/core/DriverManager.py:262
+msgid "Etkin"
+msgstr ""
+
+#: src/core/DriverManager.py:264
+msgid "Bağlı ve Aktif"
+msgstr ""
+
+#: src/core/DriverManager.py:264
+msgid "Arayüz Hazır"
+msgstr ""
 
 #: src/ui/MainWindowAdw.py:47
 msgid "Pars Welcome Hakkında"
@@ -127,7 +194,7 @@ msgstr ""
 msgid "Güvenlik ve paket güncellemelerini anında denetleyin"
 msgstr ""
 
-#: src/ui/pages/PageWelcome.py:178 src/ui/pages/PageFirstSteps.py:273
+#: src/ui/pages/PageWelcome.py:178 src/ui/pages/PageFirstSteps.py:354
 msgid "Güncelle"
 msgstr ""
 
@@ -139,7 +206,7 @@ msgstr ""
 msgid "Karanlık/Aydınlık tema, ekran ayarları ve sistem yedekleme"
 msgstr ""
 
-#: src/ui/pages/PageWelcome.py:192 src/ui/pages/PageFirstSteps.py:218
+#: src/ui/pages/PageWelcome.py:192 src/ui/pages/PageFirstSteps.py:223
 msgid "Yapılandır"
 msgstr ""
 
@@ -151,128 +218,164 @@ msgstr ""
 msgid "Tarayıcılar, ofis, kodlama ve eğlence paketlerini tek tıkla kurun"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:51
+#: src/ui/pages/PageFirstSteps.py:56
 msgid "Görünüm ve Renk Teması"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:52
+#: src/ui/pages/PageFirstSteps.py:57
 msgid "Masaüstü ve uygulama arayüzü renk stilinizi belirleyin"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:63
+#: src/ui/pages/PageFirstSteps.py:68
 msgid "Açık Tema"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:65
+#: src/ui/pages/PageFirstSteps.py:70
 msgid "Koyu Tema"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:67
+#: src/ui/pages/PageFirstSteps.py:72
 msgid "Sistem"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:118
+#: src/ui/pages/PageFirstSteps.py:123
 msgid "Masaüstü Arka Planı"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:119
+#: src/ui/pages/PageFirstSteps.py:124
 msgid "Pars Linux temalı veya sistem duvar kağıtlarını uygulayın"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:144
+#: src/ui/pages/PageFirstSteps.py:149
 msgid "Tüm Duvar Kağıtları Galerisi"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:145
+#: src/ui/pages/PageFirstSteps.py:150
 msgid "Mevcut"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:145
+#: src/ui/pages/PageFirstSteps.py:150
 msgid "adet duvar kağıdını inceleyin, filtreleyin ve arayın"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:148
+#: src/ui/pages/PageFirstSteps.py:153
 msgid "Galeriyi Aç"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:188 src/ui/widgets/WallpaperDialog.py:207
+#: src/ui/pages/PageFirstSteps.py:193 src/ui/widgets/WallpaperDialog.py:207
 msgid "duvar kağıdı uygulandı."
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:191 src/ui/widgets/WallpaperDialog.py:213
+#: src/ui/pages/PageFirstSteps.py:196 src/ui/widgets/WallpaperDialog.py:213
 msgid "Duvar kağıdı uygulanamadı!"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:209
+#: src/ui/pages/PageFirstSteps.py:214
 msgid "Kişiselleştirme"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:210
+#: src/ui/pages/PageFirstSteps.py:215
 msgid "Monitör ve ekran görüntüleme seçenekleri"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:214
+#: src/ui/pages/PageFirstSteps.py:219
 msgid "Ekran Çözünürlüğü ve Ölçekleme"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:215
+#: src/ui/pages/PageFirstSteps.py:220
 msgid "Monitör yenileme hızı, çözünürlük ve HiDPI (100% / 200%) ölçekleme"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:227
+#: src/ui/pages/PageFirstSteps.py:232
 msgid "Uygulama Dili"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:228
+#: src/ui/pages/PageFirstSteps.py:233
 msgid "Karşılama merkezinin arayüz dilini belirleyin"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:232
+#: src/ui/pages/PageFirstSteps.py:237
 msgid "Sistem Varsayılanı"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:252
+#: src/ui/pages/PageFirstSteps.py:257
 msgid ""
 "Dil ayarı kaydedildi. Uygulandığını görmek için pencereyi yeniden başlatın."
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:264
-msgid "Sistem Yönetimi ve Güvenlik"
-msgstr ""
-
-#: src/ui/pages/PageFirstSteps.py:265
-msgid "Güncellemeler, yedekleme ve denetim masası"
-msgstr ""
-
 #: src/ui/pages/PageFirstSteps.py:269
-msgid "Pars Update (Paket Güncelleyici)"
+msgid "Donanım ve Sürücüler"
 msgstr ""
 
 #: src/ui/pages/PageFirstSteps.py:270
+msgid "Ekran kartı ve kablosuz ağ bileşenlerinin donanım sürücüsü durumları"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:289
+msgid "Özel Sürücüyü Kur"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:298
+msgid "Ekran Kartı"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:299
+msgid "Aktif ekran sürücüsü tespit edilemedi"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:320
+msgid "Sürücüyü Kur"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:329
+msgid "Kablosuz Ağ (Wi-Fi)"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:330
+msgid "Bağdaştırıcı bulunamadı veya kablolu bağlantı aktif"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:340
+msgid "Sürücü kurulumu terminalde başlatıldı."
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:345
+msgid "Sistem Yönetimi ve Güvenlik"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:346
+msgid "Güncellemeler, yedekleme ve denetim masası"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:350
+msgid "Pars Update (Paket Güncelleyici)"
+msgstr ""
+
+#: src/ui/pages/PageFirstSteps.py:351
 msgid "Dağıtım paketlerini, çekirdeği ve güvenlik yamalarını güncelleyin"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:283
+#: src/ui/pages/PageFirstSteps.py:364
 msgid "Sistem Anlık Görüntüsü (Snapshot)"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:284
+#: src/ui/pages/PageFirstSteps.py:365
 msgid "Olası bir sistem arızasında sistemi geri yüklemek için yedek oluşturun"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:287
+#: src/ui/pages/PageFirstSteps.py:368
 msgid "Yedekle"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:296
+#: src/ui/pages/PageFirstSteps.py:377
 msgid "Sistem Kontrol Merkezi"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:297
+#: src/ui/pages/PageFirstSteps.py:378
 msgid "Ağ, Bluetooth, ses, kullanıcılar ve tüm donanım seçenekleri"
 msgstr ""
 
-#: src/ui/pages/PageFirstSteps.py:300
+#: src/ui/pages/PageFirstSteps.py:381
 msgid "Ayarlar"
 msgstr ""
 

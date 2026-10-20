@@ -10,12 +10,17 @@ echo "==> Dil şablonu (POT) üretiliyor..."
 xgettext --from-code=UTF-8 --language=Python --keyword=_ \
     --output=po/parslinux-welcome.pot \
     src/Main.py \
+    src/core/*.py \
     src/ui/MainWindowAdw.py \
     src/ui/pages/PageWelcome.py \
     src/ui/pages/PageFirstSteps.py \
     src/ui/pages/PageApps.py \
     src/ui/pages/PageCommunity.py \
     src/ui/widgets/WallpaperDialog.py
+
+echo "==> PO katalogları eşitleniyor (msgmerge)..."
+msgmerge -U po/tr.po po/parslinux-welcome.pot
+msgmerge -U po/en.po po/parslinux-welcome.pot
 
 echo "==> İkili çeviri dosyaları (MO) derleniyor..."
 mkdir -p data/locale/tr/LC_MESSAGES data/locale/en/LC_MESSAGES

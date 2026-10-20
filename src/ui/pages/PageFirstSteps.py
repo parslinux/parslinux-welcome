@@ -4,6 +4,8 @@
 from gi.repository import Gtk, Adw, GLib
 from src.core.DesktopActions import DesktopActions
 from src.core.WallpaperManager import WallpaperManager
+from src.core.DriverManager import DriverManager
+from src.core.AppInstaller import AppInstaller
 from src.core.I18n import _, get_current_language, set_language
 from src.Config import load_config, save_config
 from src.ui.Icons import Icons
@@ -42,7 +44,10 @@ class PageFirstSteps(Gtk.Box):
         # 3. Ekran ve Kişiselleştirme
         self._build_customization_section(box_content)
 
-        # 4. Sistem Yönetim ve Bakım Araçları
+        # 4. Donanım ve Sürücüler
+        self._build_drivers_section(box_content)
+
+        # 5. Sistem Yönetim ve Bakım Araçları
         self._build_management_section(box_content)
 
     def _build_theme_cards_section(self, container):
@@ -257,6 +262,82 @@ class PageFirstSteps(Gtk.Box):
         group_cust.add(row_lang)
 
         container.append(group_cust)
+
+    def _build_drivers_section(self, container):
+        """Ekran kartı ve kablosuz ağ sürücüleri durum ve yönetim bölümü."""
+        group_drivers = Adw.PreferencesGroup()
+        group_drivers.set_title(_("Donanım ve Sürücüler"))
+        group_drivers.set_description(_("Ekran kartı ve kablosuz ağ bileşenlerinin donanım sürücüsü durumları"))
+
+        # 1. Ekran Kartları (GPU)
+        gpus = DriverManager.get_gpus()
+        if gpus:
+            for gpu in gpus:
+                row_gpu = Adw.ActionRow()
+                row_gpu.set_title(GLib.markup_escape_text(gpu["model"]))
+                row_gpu.set_subtitle(gpu["status"])
+                row_gpu.set_icon_name(gpu.get("icon", "video-display-symbolic"))
+
+                badge = Gtk.Label(label=gpu["vendor"])
+                badge.add_css_class("pill-badge")
+                badge.add_css_class(gpu["badge_type"])
+                badge.set_valign(Gtk.Align.CENTER)
+                row_gpu.add_suffix(badge)
+
+                if gpu.get("can_install_proprietary") and gpu.get("recommended_pkg"):
+                    pkg = gpu["recommended_pkg"]
+                    btn_install = Gtk.Button(label=_("Özel Sürücüyü Kur"))
+                    btn_install.set_valign(Gtk.Align.CENTER)
+                    btn_install.add_css_class("suggested-action")
+                    btn_install.connect("clicked", lambda b, p=pkg, m=gpu["model"]: self._install_driver_pkg(p, m))
+                    row_gpu.add_suffix(btn_install)
+
+                group_drivers.add(row_gpu)
+        else:
+            row_no_gpu = Adw.ActionRow()
+            row_no_gpu.set_title(_("Ekran Kartı"))
+            row_no_gpu.set_subtitle(_("Aktif ekran sürücüsü tespit edilemedi"))
+            row_no_gpu.set_icon_name("video-display-symbolic")
+            group_drivers.add(row_no_gpu)
+
+        # 2. Wi-Fi / Ağ Bağdaştırıcıları
+        wifis = DriverManager.get_wifis()
+        if wifis:
+            for wifi in wifis:
+                row_wifi = Adw.ActionRow()
+                row_wifi.set_title(GLib.markup_escape_text(wifi["model"]))
+                row_wifi.set_subtitle(wifi["status"])
+                row_wifi.set_icon_name(wifi.get("icon", "network-wireless-symbolic"))
+
+                badge = Gtk.Label(label=wifi["driver"])
+                badge.add_css_class("pill-badge")
+                badge.add_css_class(wifi["badge_type"])
+                badge.set_valign(Gtk.Align.CENTER)
+                row_wifi.add_suffix(badge)
+
+                if wifi.get("needs_driver") and wifi.get("recommended_pkg"):
+                    pkg = wifi["recommended_pkg"]
+                    btn_wifi = Gtk.Button(label=_("Sürücüyü Kur"))
+                    btn_wifi.set_valign(Gtk.Align.CENTER)
+                    btn_wifi.add_css_class("suggested-action")
+                    btn_wifi.connect("clicked", lambda b, p=pkg, m=wifi["model"]: self._install_driver_pkg(p, m))
+                    row_wifi.add_suffix(btn_wifi)
+
+                group_drivers.add(row_wifi)
+        else:
+            row_no_wifi = Adw.ActionRow()
+            row_no_wifi.set_title(_("Kablosuz Ağ (Wi-Fi)"))
+            row_no_wifi.set_subtitle(_("Bağdaştırıcı bulunamadı veya kablolu bağlantı aktif"))
+            row_no_wifi.set_icon_name("network-wireless-symbolic")
+            group_drivers.add(row_no_wifi)
+
+        container.append(group_drivers)
+
+    def _install_driver_pkg(self, pkg_name, title):
+        """Sürücü paketini terminalde kurar ve bildirim gösterir."""
+        success = AppInstaller.install_package(pkg_name, title=title)
+        if success and hasattr(self.main_window, "show_toast"):
+            self.main_window.show_toast(_("Sürücü kurulumu terminalde başlatıldı."))
 
     def _build_management_section(self, container):
         """Sistem bakım, güncelleme ve yedekleme araçları."""

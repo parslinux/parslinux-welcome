@@ -90,5 +90,25 @@ class TestParsWelcome(unittest.TestCase):
         self.assertEqual(_("İlk Adımlar"), "İlk Adımlar")
         self.assertEqual(_("Uygulamalar"), "Uygulamalar")
 
+    def test_driver_manager(self):
+        from src.core.DriverManager import DriverManager
+        gpus = DriverManager.get_gpus()
+        self.assertIsInstance(gpus, list)
+        self.assertGreater(len(gpus), 0, "Sistemde en az bir ekran kartı tespit edilmelidir!")
+        for g in gpus:
+            self.assertIn("model", g)
+            self.assertIn("vendor", g)
+            self.assertIn("driver", g)
+            self.assertIn("status", g)
+            self.assertIn("badge_type", g)
+
+        wifis = DriverManager.get_wifis()
+        self.assertIsInstance(wifis, list)
+        for w in wifis:
+            self.assertIn("model", w)
+            self.assertIn("driver", w)
+            self.assertIn("status", w)
+            self.assertIn("badge_type", w)
+
 if __name__ == "__main__":
     unittest.main()

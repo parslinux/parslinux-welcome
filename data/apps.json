@@ -1,0 +1,172 @@
+{
+  "categories": [
+    {
+      "id": "internet",
+      "name": "İnternet ve İletişim",
+      "icon": "applications-internet-symbolic",
+      "apps": [
+        {
+          "id": "brave-browser",
+          "name": "Brave Browser",
+          "desc": "Gizlilik odaklı, hızlı ve reklam engelleyicili web tarayıcısı.",
+          "icon": "brave-browser",
+          "cmd": "brave",
+          "pkg_arch": "brave-bin",
+          "pkg_debian": "brave-browser",
+          "flatpak": "com.brave.Browser"
+        },
+        {
+          "id": "firefox",
+          "name": "Mozilla Firefox",
+          "desc": "Özgür, açık kaynaklı ve güvenli popüler web tarayıcısı.",
+          "icon": "firefox",
+          "cmd": "firefox",
+          "pkg_arch": "firefox",
+          "pkg_debian": "firefox-esr",
+          "flatpak": "org.mozilla.firefox"
+        },
+        {
+          "id": "google-chrome",
+          "name": "Google Chrome",
+          "desc": "Google tarafından geliştirilen popüler web tarayıcısı.",
+          "icon": "google-chrome",
+          "cmd": "google-chrome-stable",
+          "pkg_arch": "google-chrome",
+          "pkg_debian": "google-chrome-stable",
+          "flatpak": "com.google.Chrome"
+        },
+        {
+          "id": "telegram-desktop",
+          "name": "Telegram Desktop",
+          "desc": "Hızlı ve güvenli bulut tabanlı anlık mesajlaşma uygulaması.",
+          "icon": "telegram",
+          "cmd": "telegram-desktop",
+          "pkg_arch": "telegram-desktop",
+          "pkg_debian": "telegram-desktop",
+          "flatpak": "org.telegram.desktop"
+        },
+        {
+          "id": "discord",
+          "name": "Discord",
+          "desc": "Topluluklar ve oyuncular için hepsi bir arada sesli ve yazılı sohbet.",
+          "icon": "discord",
+          "cmd": "discord",
+          "pkg_arch": "discord",
+          "pkg_debian": "discord",
+          "flatpak": "com.discordapp.Discord"
+        }
+      ]
+    },
+    {
+      "id": "development",
+      "name": "Geliştirici Araçları",
+      "icon": "applications-development-symbolic",
+      "apps": [
+        {
+          "id": "visual-studio-code",
+          "name": "Visual Studio Code",
+          "desc": "Modern kod düzenleyici, eklenti desteği ve dahili Git entegrasyonu.",
+          "icon": "code",
+          "cmd": "code",
+          "pkg_arch": "visual-studio-code-bin",
+          "pkg_debian": "code",
+          "flatpak": "com.visualstudio.code"
+        },
+        {
+          "id": "git",
+          "name": "Git ve Araçları",
+          "desc": "Dağıtık sürüm kontrol sistemi.",
+          "icon": "git",
+          "cmd": "git",
+          "pkg_arch": "git",
+          "pkg_debian": "git",
+          "flatpak": ""
+        },
+        {
+          "id": "docker",
+          "name": "Docker",
+          "desc": "Konteyner tabanlı uygulama geliştirme ve dağıtım platformu.",
+          "icon": "docker",
+          "cmd": "docker",
+          "pkg_arch": "docker",
+          "pkg_debian": "docker.io",
+          "flatpak": ""
+        }
+      ]
+    },
+    {
+      "id": "multimedia",
+      "name": "Multimedya ve Grafik",
+      "icon": "applications-multimedia-symbolic",
+      "apps": [
+        {
+          "id": "vlc",
+          "name": "VLC Media Player",
+          "desc": "Tüm popüler video ve ses formatlarını oynatabilen medya oynatıcı.",
+          "icon": "vlc",
+          "cmd": "vlc",
+          "pkg_arch": "vlc",
+          "pkg_debian": "vlc",
+          "flatpak": "org.videolan.VLC"
+        },
+        {
+          "id": "gimp",
+          "name": "GIMP",
+          "desc": "Gelişmiş açık kaynaklı görüntü ve fotoğraf düzenleme aracı.",
+          "icon": "gimp",
+          "cmd": "gimp",
+          "pkg_arch": "gimp",
+          "pkg_debian": "gimp",
+          "flatpak": "org.gimp.GIMP"
+        },
+        {
+          "id": "obs-studio",
+          "name": "OBS Studio",
+          "desc": "Canlı yayın ve ekran kaydı yazılımı.",
+          "icon": "com.obsproject.Studio",
+          "cmd": "obs",
+          "pkg_arch": "obs-studio",
+          "pkg_debian": "obs-studio",
+          "flatpak": "com.obsproject.Studio"
+        },
+        {
+          "id": "spotify",
+          "name": "Spotify",
+          "desc": "Çevrimiçi müzik ve podcast dinleme platformu.",
+          "icon": "spotify-client",
+          "cmd": "spotify",
+          "pkg_arch": "spotify",
+          "pkg_debian": "spotify-client",
+          "flatpak": "com.spotify.Client"
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "name": "Ofis ve Verimlilik",
+      "icon": "applications-office-symbolic",
+      "apps": [
+        {
+          "id": "libreoffice",
+          "name": "LibreOffice",
+          "desc": "Kapsamlı ve özgür ofis yazılım paketi.",
+          "icon": "libreoffice-startcenter",
+          "cmd": "libreoffice",
+          "pkg_arch": "libreoffice-fresh",
+          "pkg_debian": "libreoffice",
+          "flatpak": "org.libreoffice.LibreOffice"
+        },
+        {
+          "id": "onlyoffice",
+          "name": "ONLYOFFICE",
+          "desc": "MS Office uyumlu modern ofis doküman düzenleyicisi.",
+          "icon": "onlyoffice-desktopeditors",
+          "cmd": "onlyoffice-desktopeditors",
+          "pkg_arch": "onlyoffice-bin",
+          "pkg_debian": "onlyoffice-desktopeditors",
+          "flatpak": "org.onlyoffice.desktopeditors"
+        }
+      ]
+    }
+  ]
+}

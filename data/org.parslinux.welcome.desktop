@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Pars Hoş Geldiniz
+Name[en]=Pars Welcome
+Comment=Pars Linux Hoş Geldiniz ve Başlangıç Merkezi
+Comment[en]=Pars Linux Welcome and Initial Setup Center
+Exec=pars-welcome
+Icon=org.parslinux.welcome
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;System;Settings;
+StartupNotify=true
+X-GNOME-Autostart-enabled=true

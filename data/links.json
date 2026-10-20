@@ -1,0 +1,39 @@
+{
+  "links": [
+    {
+      "id": "website",
+      "title": "Pars Linux Web Sitesi",
+      "subtitle": "Resmi web sitesi, duyurular ve son haberler",
+      "url": "https://parslinux.org",
+      "icon": "globe-symbolic"
+    },
+    {
+      "id": "docs",
+      "title": "Belgelendirme ve Wiki",
+      "subtitle": "Kullanım kılavuzları, kurulum ve ipuçları",
+      "url": "https://docs.parslinux.org",
+      "icon": "help-about-symbolic"
+    },
+    {
+      "id": "forum",
+      "title": "Topluluk Forumu",
+      "subtitle": "Sorularınızı sorun, tartışmalara katılın ve çözüm bulun",
+      "url": "https://forum.parslinux.org",
+      "icon": "user-available-symbolic"
+    },
+    {
+      "id": "telegram",
+      "title": "Telegram Topluluğu",
+      "subtitle": "Hızlı sohbet, anlık yardımlaşma ve duyurular",
+      "url": "https://t.me/parslinux",
+      "icon": "send-to-symbolic"
+    },
+    {
+      "id": "github",
+      "title": "GitHub Deposu ve Katkı",
+      "subtitle": "Açık kaynak projelerimiz ve hata bildirimleri",
+      "url": "https://github.com/parslinux",
+      "icon": "application-x-executable-symbolic"
+    }
+  ]
+}

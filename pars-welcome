@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import sys
+import os
+
+# Uygulama kök dizinini Python yoluna ekle
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, CURRENT_DIR)
+
+from src.Main import main
+
+if __name__ == "__main__":
+    sys.exit(main())

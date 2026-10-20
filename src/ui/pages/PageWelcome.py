@@ -48,10 +48,13 @@ class PageWelcome(Gtk.Box):
         hero.add_css_class("welcome-hero")
 
         # Sol Pars Logo
-        logo_path = get_data_path("org.parslinux.welcome.svg")
+        png_path = get_data_path("org.parslinux.welcome.png")
+        svg_path = get_data_path("org.parslinux.welcome.svg")
+        logo_path = png_path if os.path.exists(png_path) else svg_path
+
         if os.path.exists(logo_path):
             img_logo = Gtk.Image.new_from_file(logo_path)
-            img_logo.set_pixel_size(76)
+            img_logo.set_pixel_size(84)
             img_logo.add_css_class("welcome-logo")
             img_logo.set_valign(Gtk.Align.CENTER)
             hero.append(img_logo)

@@ -101,6 +101,11 @@ EOF
         chmod 644 "${DEB_ROOT}/usr/share/icons/hicolor/scalable/apps/org.parslinux.welcome.svg"
     fi
 
+    if [[ -d data/icons/hicolor ]]; then
+        mkdir -p "${DEB_ROOT}/usr/share/icons/hicolor"
+        cp -r data/icons/hicolor/* "${DEB_ROOT}/usr/share/icons/hicolor/"
+    fi
+
     DEB_FILE="${DIST_DIR}/${PKG_NAME}_${VERSION}_all.deb"
     dpkg-deb --build "${DEB_ROOT}" "${DEB_FILE}" >/dev/null
     rm -rf "${DEB_ROOT}"

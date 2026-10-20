@@ -43,4 +43,7 @@ EOF
     if [ -f data/org.parslinux.welcome.svg ]; then
         install -Dm644 data/org.parslinux.welcome.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
     fi
+    if [ -d data/icons/hicolor ]; then
+        cp -r data/icons/hicolor/* "$pkgdir/usr/share/icons/hicolor/"
+    fi
 }

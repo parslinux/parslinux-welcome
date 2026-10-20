@@ -47,6 +47,10 @@ if [[ -f "${SCRIPT_DIR}/data/org.parslinux.welcome.svg" ]]; then
     chmod 644 "${ICON_DIR}/org.parslinux.welcome.svg"
 fi
 
+if [[ -d "${SCRIPT_DIR}/data/icons/hicolor" ]]; then
+    cp -r "${SCRIPT_DIR}/data/icons/hicolor/"* "${INSTALL_PREFIX}/share/icons/hicolor/"
+fi
+
 # 5. Önbellekleri güncelle
 echo "--> Sistem veritabanları güncelleniyor..."
 if command -v update-desktop-database &>/dev/null; then

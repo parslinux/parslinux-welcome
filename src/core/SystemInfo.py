@@ -5,7 +5,7 @@ import os
 import platform
 import shutil
 import subprocess
-from typing import Dict
+from typing import Dict, Tuple
 
 class SystemInfo:
     """Pars Linux sistem, donanım ve masaüstü bilgilerini toplayan sınıf."""
@@ -54,7 +54,6 @@ class SystemInfo:
         """Kullanılan masaüstü ortamını (GNOME, XFCE, KDE vb.) tespit eder."""
         xdg_current = os.environ.get("XDG_CURRENT_DESKTOP", "")
         if xdg_current:
-            # Örn: "GNOME", "XFCE", "KDE"
             return xdg_current.split(":")[-1].strip()
         desktop_session = os.environ.get("DESKTOP_SESSION", "")
         if desktop_session:
@@ -75,49 +74,81 @@ class SystemInfo:
         except Exception:
             cpu_name = platform.processor() or "İşlemci"
             
-        # Gereksiz boşlukları ve patent sembollerini temizle
         clean_name = cpu_name.replace("(R)", "").replace("(TM)", "").replace("CPU", "").strip()
         return " ".join(clean_name.split())
 
     @staticmethod
-    def get_ram_info() -> str:
-        """Toplam ve kullanılabilir RAM miktarını döner (GB formatında)."""
+    def get_ram_stats() -> Tuple[float, float, float]:
+        """RAM istatistiklerini (toplam_gb, kullanılan_gb, oran) döner."""
         try:
             total_kb = 0
+            avail_kb = 0
             if os.path.exists("/proc/meminfo"):
                 with open("/proc/meminfo", "r", encoding="utf-8") as f:
                     for line in f:
                         if line.startswith("MemTotal:"):
                             total_kb = int(line.split()[1])
-                            break
+                        elif line.startswith("MemAvailable:"):
+                            avail_kb = int(line.split()[1])
             if total_kb > 0:
+                used_kb = total_kb - avail_kb
                 total_gb = round(total_kb / (1024 * 1024), 1)
-                return f"{total_gb} GB RAM"
+                used_gb = round(used_kb / (1024 * 1024), 1)
+                fraction = min(max(used_kb / total_kb, 0.0), 1.0)
+                return total_gb, used_gb, fraction
         except Exception:
             pass
-        return "Bellek Bilgisi Alınamadı"
+        return 0.0, 0.0, 0.0
 
     @staticmethod
-    def get_disk_info() -> str:
-        """Kök (/) dizini için toplam ve boş disk alanını döner."""
+    def get_disk_stats() -> Tuple[float, float, float]:
+        """Disk istatistiklerini (toplam_gb, kullanılan_gb, oran) döner."""
         try:
             total, used, free = shutil.disk_usage("/")
             total_gb = round(total / (1024**3), 1)
-            free_gb = round(free / (1024**3), 1)
-            return f"{free_gb} GB boş / {total_gb} GB"
+            used_gb = round(used / (1024**3), 1)
+            fraction = min(max(used / total, 0.0), 1.0)
+            return total_gb, used_gb, fraction
         except Exception:
-            return "Disk Bilgisi Alınamadı"
+            return 0.0, 0.0, 0.0
+
+    @staticmethod
+    def get_gpu_info() -> str:
+        """Ekran kartı modelini lspci üzerinden tespit eder."""
+        try:
+            res = subprocess.run(["lspci"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+            for line in res.stdout.splitlines():
+                if "VGA compatible controller" in line or "3D controller" in line:
+                    gpu_str = line.split(":", 2)[-1].strip()
+                    # Marka temizleme
+                    gpu_str = gpu_str.replace("Corporation", "").replace("Advanced Micro Devices, Inc.", "AMD").strip()
+                    return gpu_str
+        except Exception:
+            pass
+        return "Tümleşik Grafik"
 
     @classmethod
-    def get_all_summary(cls) -> Dict[str, str]:
+    def get_all_summary(cls) -> Dict:
         """Tüm sistem özetini tek bir sözlükte toplar."""
         os_info = cls.get_os_info()
+        total_ram, used_ram, ram_fraction = cls.get_ram_stats()
+        total_disk, used_disk, disk_fraction = cls.get_disk_stats()
+
         return {
             "os_name": os_info["pretty_name"],
             "kernel": f"Linux {cls.get_kernel()}",
             "desktop": cls.get_desktop_environment(),
             "cpu": cls.get_cpu_info(),
-            "ram": cls.get_ram_info(),
-            "disk": cls.get_disk_info(),
+            "gpu": cls.get_gpu_info(),
+            "ram": f"{used_ram} GB / {total_ram} GB",
+            "disk": f"{used_disk} GB / {total_disk} GB",
+            "ram_total": total_ram,
+            "ram_used": used_ram,
+            "ram_fraction": ram_fraction,
+            "ram_text": f"{used_ram} GB / {total_ram} GB",
+            "disk_total": total_disk,
+            "disk_used": used_disk,
+            "disk_fraction": disk_fraction,
+            "disk_text": f"{used_disk} GB / {total_disk} GB",
             "arch": platform.machine()
         }

@@ -11,18 +11,22 @@ from src.ui.pages.PageApps import PageApps
 from src.ui.pages.PageCommunity import PageCommunity
 
 class MainWindowAdw(Adw.ApplicationWindow):
-    """Pars Welcome ana uygulama penceresi (Libadwaita)."""
+    """Pars Welcome ana Libadwaita penceresi (ToastOverlay ve modern HeaderBar)."""
 
     def __init__(self, app):
         super().__init__(application=app, title=APP_NAME)
-        self.set_default_size(940, 660)
-        self.set_size_request(680, 500)
+        self.set_default_size(960, 680)
+        self.set_size_request(700, 520)
+
+        # 1. Toast Overlay (Modern bildirim katmanı)
+        self.toast_overlay = Adw.ToastOverlay()
+        self.set_content(self.toast_overlay)
 
         # Ana dikey kutu
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.set_content(main_box)
+        self.toast_overlay.set_child(main_box)
 
-        # 1. Başlık Çubuğu (HeaderBar)
+        # 2. Başlık Çubuğu (HeaderBar)
         header = Adw.HeaderBar()
         main_box.append(header)
 
@@ -39,11 +43,11 @@ class MainWindowAdw(Adw.ApplicationWindow):
         # Başlık sağ butonları: Hakkında butonu
         btn_about = Gtk.Button()
         btn_about.set_icon_name("help-about-symbolic")
-        btn_about.set_tooltip_text("Hakkında")
+        btn_about.set_tooltip_text("Pars Welcome Hakkında")
         btn_about.connect("clicked", self._on_about_clicked)
         header.pack_end(btn_about)
 
-        # 2. Sayfaları Ekle
+        # 3. Sayfaları Ekle
         self.page_welcome = PageWelcome(self)
         self.page_first_steps = PageFirstSteps(self)
         self.page_apps = PageApps(self)
@@ -64,11 +68,11 @@ class MainWindowAdw(Adw.ApplicationWindow):
 
         main_box.append(self.stack)
 
-        # 3. Alt Durum ve Otomatik Başlatma Çubuğu
+        # 4. Alt Durum ve Otomatik Başlatma Çubuğu
         bottom_bar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         bottom_bar.add_css_class("toolbar")
-        bottom_bar.set_margin_start(16)
-        bottom_bar.set_margin_end(16)
+        bottom_bar.set_margin_start(18)
+        bottom_bar.set_margin_end(18)
         bottom_bar.set_margin_top(8)
         bottom_bar.set_margin_bottom(10)
 
@@ -77,7 +81,7 @@ class MainWindowAdw(Adw.ApplicationWindow):
         self.chk_autostart.connect("toggled", self._on_autostart_toggled)
         bottom_bar.append(self.chk_autostart)
 
-        # Sağ alta minik sürüm etiketi
+        # Sağ alta minik sürüm ve Pars Linux rozeti
         lbl_ver = Gtk.Label(label=f"Pars Linux • v{VERSION}")
         lbl_ver.set_hexpand(True)
         lbl_ver.set_halign(Gtk.Align.END)
@@ -86,26 +90,36 @@ class MainWindowAdw(Adw.ApplicationWindow):
 
         main_box.append(bottom_bar)
 
+    def show_toast(self, message: str, timeout: int = 3):
+        """Kullanıcıya modern Adw.Toast bildirimi gösterir."""
+        toast = Adw.Toast(title=message)
+        toast.set_timeout(timeout)
+        self.toast_overlay.add_toast(toast)
+
     def switch_page(self, page_name: str):
         """İstenen sayfaya programatik olarak geçiş yapar."""
         self.stack.set_visible_child_name(page_name)
 
     def _on_autostart_toggled(self, checkbutton: Gtk.CheckButton):
-        """Açılışta başlatma ayarını değiştirir."""
+        """Açılışta başlatma ayarını değiştirir ve toast mesajı verir."""
         is_active = checkbutton.get_active()
         AutostartManager.set_enabled(is_active)
+        if is_active:
+            self.show_toast("Açılışta otomatik başlatma etkinleştirildi")
+        else:
+            self.show_toast("Açılışta otomatik başlatma kapatıldı")
 
     def _on_about_clicked(self, button):
         """Modern Adw.AboutWindow diyaloğunu açar."""
         about = Adw.AboutWindow(transient_for=self)
         about.set_application_name(APP_NAME)
         about.set_version(VERSION)
-        about.set_developer_name("Pars Linux Ekibi")
+        about.set_developer_name("Pars Linux Geliştirici Ekibi")
         about.set_license_type(Gtk.License.GPL_3_0)
         about.set_website("https://parslinux.org")
         about.set_issue_url("https://github.com/parslinux/parslinux-welcome/issues")
         about.set_comments(
-            "Pars Linux kullanıcıları için tasarlanmış modern karşılama ve başlangıç merkezi."
+            "Pars Linux kullanıcıları için tasarlanmış modern, hızlı ve zarif karşılama merkezi."
         )
         about.set_application_icon("org.parslinux.welcome")
         about.present()

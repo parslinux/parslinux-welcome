@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from gi.repository import Gtk, GLib, Pango
+from src.ui.Icons import Icons
 
 class StatCard(Gtk.Box):
     """Modern dashboard donanım istatistik kartı."""
@@ -11,9 +12,8 @@ class StatCard(Gtk.Box):
         self.add_css_class("stat-card")
         self.set_hexpand(True)
 
-        # Sol İkon Kutusu
-        icon_img = Gtk.Image.new_from_icon_name(icon_name)
-        icon_img.set_pixel_size(32)
+        # Sol İkon Kutusu (Korumalı)
+        icon_img = Icons.create_image(icon_name, pixel_size=32)
         icon_img.set_valign(Gtk.Align.CENTER)
         self.append(icon_img)
 

@@ -4,6 +4,7 @@
 from gi.repository import Gtk, Adw, GLib
 from src.core.DesktopActions import DesktopActions
 from src.Config import load_config, save_config
+from src.ui.Icons import Icons
 
 class PageFirstSteps(Gtk.Box):
     """İlk Adımlar sayfası: Görsel tema seçimi, ekran ayarları ve sistem yönetimi."""
@@ -53,11 +54,11 @@ class PageFirstSteps(Gtk.Box):
         self.theme_widgets = {}
 
         # 1. Açık Tema Kartı
-        card_light = self._create_theme_card("Açık Tema", "light-mode-symbolic", "light", current_theme == "light")
+        card_light = self._create_theme_card("Açık Tema", "light-mode", "light", current_theme == "light")
         # 2. Koyu Tema Kartı
-        card_dark = self._create_theme_card("Koyu Tema", "weather-clear-night-symbolic", "dark", current_theme == "dark")
+        card_dark = self._create_theme_card("Koyu Tema", "dark-mode", "dark", current_theme == "dark")
         # 3. Sistem Varsayılanı Kartı
-        card_system = self._create_theme_card("Sistem", "emblem-system-symbolic", "system", current_theme == "system")
+        card_system = self._create_theme_card("Sistem", "system-mode", "system", current_theme == "system")
 
         box_cards.append(card_light)
         box_cards.append(card_dark)
@@ -80,8 +81,7 @@ class PageFirstSteps(Gtk.Box):
         box.set_halign(Gtk.Align.CENTER)
         box.set_valign(Gtk.Align.CENTER)
 
-        icon = Gtk.Image.new_from_icon_name(icon_name)
-        icon.set_pixel_size(32)
+        icon = Icons.create_image(icon_name, pixel_size=36)
         box.append(icon)
 
         lbl = Gtk.Label(label=title)
